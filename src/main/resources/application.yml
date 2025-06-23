@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: triphub
+
+  #Postgresql connection
+  datasource:
+    url: jdbc:postgresql://localhost:5432/triphub
+    username: postgres
+    password: 090517
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # options: none | validate | update | create | create-drop
+    show-sql: true      # print SQL queries in console
+    properties:
+      hibernate:
+        format_sql: true
+  # Optional: specify dialect explicitly (Spring Boot usually detects it)
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+#fronted cors
+application:
+  frontend-urls: "http://localhost:3000, https://your-production-frontend.com"
+
+#swagger route
+springdoc:
+  swagger-ui:
+    path: /api-docs.html
+
+#Apis
+api:
+  base:
+    path: api/v1
+
+#jwt expiration
+jwt:
+  access-token-validity-ms: 900000     # 15 minutes in milliseconds
+  refresh-token-validity-ms: 604800000 # 7 days in milliseconds
+
+
+
+
+
