@@ -1,43 +1,21 @@
 spring:
   application:
     name: triphub
+  profiles:
+    active: dev  # Change to 'prod' when deploying to production
 
-  #Postgresql connection
-  datasource:
-    url: jdbc:postgresql://localhost:5432/triphub
-    username: postgres
-    password: D@wZ@yY@r093
-    driver-class-name: org.postgresql.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update  # options: none | validate | update | create | create-drop
-    show-sql: true      # print SQL queries in console
-    properties:
-      hibernate:
-        format_sql: true
-  # Optional: specify dialect explicitly (Spring Boot usually detects it)
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+api:
+  base:
+    path: api/v1
 
 #fronted cors
 application:
   frontend-urls: "http://localhost:3000, https://your-production-frontend.com"
 
-#swagger route
+jwt:
+  access-token-validity-ms: 900000     # 15 minutes in ms
+  refresh-token-validity-ms: 604800000 # 7 days in ms
+
 springdoc:
   swagger-ui:
     path: /api-docs.html
-
-#Apis
-api:
-  base:
-    path: api/v1
-
-#jwt expiration
-jwt:
-  access-token-validity-ms: 900000     # 15 minutes in milliseconds
-  refresh-token-validity-ms: 604800000 # 7 days in milliseconds
-
-
-
-
-
