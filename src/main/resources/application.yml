@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/triphub
     username: postgres
-    password: 090517
+    password: D@wZ@yY@r093
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
