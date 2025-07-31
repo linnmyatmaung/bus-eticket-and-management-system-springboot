@@ -1,13 +1,14 @@
 /*
  * @Author : Linn Myat Maung
- * @Date   : 7/28/2025
- * @Time   : 8:34 PM
+ * @Date   : 7/30/2025
+ * @Time   : 10:27 PM
  */
 
-package com.triphub.demo.api.bus.model;
+package com.triphub.demo.api.operator.model;
 
-import com.triphub.demo.api.bus.enums.BusType;
-import com.triphub.demo.api.operator.model.Operator;
+
+import com.triphub.demo.api.bus.model.Bus;
+import com.triphub.demo.api.token.model.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,39 +17,32 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "bus")
+@Table(name = "operator")
 @Data   // generates getters, setters, toString, equals, hashCode
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 
-public class Bus{
+public class Operator{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String vin;
+    private String operatorName;
 
     @Column(nullable = false)
-    private String model;
+    private String address;
 
     @Column(nullable = false)
-    private String year;
+    private String phNo;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private BusType busType;
 
     @Column(nullable = false)
-    private int capacity;
+    private int busCount;
 
-    @Column(nullable = false)
-    private boolean status;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "operator_id", nullable = false)
-    private Operator operator;
+    @OneToMany(mappedBy = "operator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Bus bus;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
