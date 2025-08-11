@@ -6,7 +6,7 @@
 
 package com.triphub.demo.api.operator.controller;
 
-import com.triphub.demo.api.operator.dto.OperatorDto;
+import com.triphub.demo.api.operator.dto.OperatorRequestDto;
 import com.triphub.demo.api.operator.service.OperatorService;
 import com.triphub.demo.config.response.dto.ApiResponse;
 import com.triphub.demo.config.response.utils.ResponseUtil;
@@ -30,7 +30,7 @@ public class OperatorController {
 
     @PostMapping
     @Operation(summary = "Create Operator", description = "Add a new operator")
-    public ResponseEntity<ApiResponse> createOperator(@Validated @RequestBody OperatorDto operatorDto,
+    public ResponseEntity<ApiResponse> createOperator(@Validated @RequestBody OperatorRequestDto operatorDto,
                                                       HttpServletRequest request) {
         ApiResponse response = operatorService.createOperator(operatorDto);
         return ResponseUtil.buildResponse(request, response);
@@ -53,7 +53,7 @@ public class OperatorController {
     @PutMapping("/{id}")
     @Operation(summary = "Update Operator", description = "Update an existing operator")
     public ResponseEntity<ApiResponse> updateOperator(@PathVariable Long id,
-                                                      @Validated @RequestBody OperatorDto operatorDto,
+                                                      @Validated @RequestBody OperatorRequestDto operatorDto,
                                                       HttpServletRequest request) {
         ApiResponse response = operatorService.updateOperator(id, operatorDto);
         return ResponseUtil.buildResponse(request, response);

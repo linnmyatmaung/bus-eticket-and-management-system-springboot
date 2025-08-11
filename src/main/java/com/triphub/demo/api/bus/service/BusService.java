@@ -6,13 +6,13 @@
 
 package com.triphub.demo.api.bus.service;
 
-import com.triphub.demo.api.bus.dto.BusDto;
+import com.triphub.demo.api.bus.dto.BusRequestDto;
 import com.triphub.demo.config.response.dto.ApiResponse;
 
 public interface BusService {
     ApiResponse retrieveBuses(int page, int limit) throws Exception;
-    ApiResponse createBus(BusDto busDto);
+    ApiResponse createBus(BusRequestDto busDto);
     ApiResponse getBusById(Long id);
-    ApiResponse updateBus(Long id, BusDto busDto);
+    ApiResponse updateBus(Long id, BusRequestDto busDto);
     ApiResponse deleteBus(Long id);
 }

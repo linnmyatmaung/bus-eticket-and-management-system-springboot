@@ -1,3 +1,9 @@
+/*
+ * @Author : Linn Myat Maung
+ * @Date   : 8/11/2025
+ * @Time   : 9:33 PM
+ */
+
 package com.triphub.demo.api.bus.dto;
 
 import com.triphub.demo.api.bus.enums.BusType;
@@ -12,9 +18,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BusDto {
+public class BusRequestDto {
 
-    private Long id;
 
     @NotBlank(message = "VIN is required")
     private String vin;
@@ -29,14 +34,11 @@ public class BusDto {
     @NotNull(message = "Bus type is required")
     private BusType busType;
 
-
     @NotNull(message = "Bus status is required")
     private boolean status;
 
     @NotNull(message = "Operator ID is required")
     private Long operatorId;
 
-    private String operatorName;
 
-    private String operatorImage;
 }

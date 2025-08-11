@@ -7,13 +7,13 @@
 package com.triphub.demo.api.operator.service;
 
 
-import com.triphub.demo.api.operator.dto.OperatorDto;
+import com.triphub.demo.api.operator.dto.OperatorRequestDto;
 import com.triphub.demo.config.response.dto.ApiResponse;
 
 public interface OperatorService {
-    ApiResponse createOperator(OperatorDto operatorDto);
+    ApiResponse createOperator(OperatorRequestDto operatorDto);
     ApiResponse getOperatorById(Long id);
     ApiResponse getAllOperators();
-    ApiResponse updateOperator(Long id, OperatorDto operatorDto);
+    ApiResponse updateOperator(Long id, OperatorRequestDto operatorDto);
     ApiResponse deleteOperator(Long id);
 }

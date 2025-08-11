@@ -7,6 +7,7 @@
 package com.triphub.demo.api.operator.service.impl;
 
 import com.triphub.demo.api.operator.dto.OperatorDto;
+import com.triphub.demo.api.operator.dto.OperatorRequestDto;
 import com.triphub.demo.api.operator.model.Operator;
 import com.triphub.demo.api.operator.repository.OperatorRepository;
 import com.triphub.demo.api.operator.service.OperatorService;
@@ -31,7 +32,7 @@ public class OperatorServiceImpl implements OperatorService {
     private final MapperUtil mapperUtil;
 
     @Override
-    public ApiResponse createOperator(OperatorDto operatorDto) {
+    public ApiResponse createOperator(OperatorRequestDto operatorDto) {
         if (operatorRepository.existsByOperatorName(operatorDto.getOperatorName())) {
             return ResponseUtil.error("Operator name already exists", HttpStatus.CONFLICT.value(), null);
         }
@@ -59,7 +60,7 @@ public class OperatorServiceImpl implements OperatorService {
     }
 
     @Override
-    public ApiResponse updateOperator(Long id, OperatorDto operatorDto) {
+    public ApiResponse updateOperator(Long id, OperatorRequestDto operatorDto) {
         Operator existingOperator = EntityUtil.getEntityById(operatorRepository, id, "Operator");
 
         if (!existingOperator.getOperatorName().equals(operatorDto.getOperatorName()) &&

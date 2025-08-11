@@ -6,6 +6,7 @@
 package com.triphub.demo.api.bus.service.impl;
 
 import com.triphub.demo.api.bus.dto.BusDto;
+import com.triphub.demo.api.bus.dto.BusRequestDto;
 import com.triphub.demo.api.bus.model.Bus;
 import com.triphub.demo.api.bus.repository.BusRepository;
 import com.triphub.demo.api.operator.model.Operator;
@@ -39,7 +40,7 @@ public class BusServiceImpl implements BusService {
     private final MapperUtil mapperUtil;
 
     @Override
-    public ApiResponse createBus(BusDto busDto) {
+    public ApiResponse createBus(BusRequestDto busDto) {
         if (busRepository.existsByVin(busDto.getVin())) {
             return ResponseUtil.error("VIN already exists", HttpStatus.CONFLICT.value(), null);
         }
@@ -47,6 +48,7 @@ public class BusServiceImpl implements BusService {
         Operator operator = EntityUtil.getEntityById(operatorRepository, busDto.getOperatorId(), "Operator");
 
         Bus bus = mapperUtil.convertToEntity(busDto, Bus.class);
+        bus.setId(null); // Prevent accidental overwrite
         bus.setOperator(operator);
 
         EntityUtil.saveEntityWithoutReturn(busRepository, bus, "Bus");
@@ -93,7 +95,7 @@ public class BusServiceImpl implements BusService {
 
 
     @Override
-    public ApiResponse updateBus(Long id, BusDto busDto) {
+    public ApiResponse updateBus(Long id, BusRequestDto busDto) {
         Bus existingBus = EntityUtil.getEntityById(busRepository, id, "Bus");
 
         if (!existingBus.getVin().equals(busDto.getVin()) && busRepository.existsByVin(busDto.getVin())) {

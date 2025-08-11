@@ -6,7 +6,7 @@
 
 package com.triphub.demo.api.bus.controller;
 
-import com.triphub.demo.api.bus.dto.BusDto;
+import com.triphub.demo.api.bus.dto.BusRequestDto;
 import com.triphub.demo.api.bus.service.BusService;
 import com.triphub.demo.config.response.dto.ApiResponse;
 import com.triphub.demo.config.response.utils.ResponseUtil;
@@ -30,7 +30,7 @@ public class BusController {
 
     @PostMapping
     @Operation(summary = "Create Bus", description = "Add a new bus")
-    public ResponseEntity<ApiResponse> createBus(@Validated @RequestBody BusDto busDto, HttpServletRequest request) {
+    public ResponseEntity<ApiResponse> createBus(@Validated @RequestBody BusRequestDto busDto, HttpServletRequest request) {
         ApiResponse response = busService.createBus(busDto);
         return ResponseUtil.buildResponse(request, response);
     }
@@ -58,7 +58,7 @@ public class BusController {
 
     @PutMapping("/{id}")
     @Operation(summary = "Update Bus", description = "Update an existing bus")
-    public ResponseEntity<ApiResponse> updateBus(@PathVariable Long id, @Validated @RequestBody BusDto busDto, HttpServletRequest request) {
+    public ResponseEntity<ApiResponse> updateBus(@PathVariable Long id, @Validated @RequestBody BusRequestDto busDto, HttpServletRequest request) {
         ApiResponse response = busService.updateBus(id, busDto);
         return ResponseUtil.buildResponse(request, response);
     }
