@@ -27,6 +27,11 @@ public class MapperUtil {
         return modelMapper.map(dto, entityClass);
     }
 
+    // ✅ Update existing entity with DTO values
+    public <D, E> void updateEntity(D dto, E existingEntity) {
+        modelMapper.map(dto, existingEntity);
+    }
+
     // ✅ Convert list of entities -> list of DTOs
     public <E, D> List<D> convertToDtoList(List<E> entityList, Class<D> dtoClass) {
         return entityList.stream()

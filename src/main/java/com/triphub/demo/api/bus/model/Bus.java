@@ -40,8 +40,7 @@ public class Bus{
     @Column(nullable = false)
     private BusType busType;
 
-    @Column(nullable = false)
-    private int capacity;
+
 
     @Column(nullable = false)
     private boolean status;

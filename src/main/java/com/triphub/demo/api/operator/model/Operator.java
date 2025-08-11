@@ -15,6 +15,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "operator")
@@ -31,6 +33,9 @@ public class Operator{
     @Column(nullable = false, unique = true)
     private String operatorName;
 
+    @Column(nullable = false, unique = true)
+    private String operatorImage;
+
     @Column(nullable = false)
     private String address;
 
@@ -42,7 +47,8 @@ public class Operator{
     private int busCount;
 
     @OneToMany(mappedBy = "operator", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Bus bus;
+    private List<Bus> buses = new ArrayList<>();
+
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
